@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="img/airbnb.png" type="image/png">
+  <title>Publicar propiedad | Simulación Airbnb</title>
+  <link rel="stylesheet" href="stylesPublicar.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Publicar una propiedad</h1>
+    <p class="subtitle">Completá los detalles de tu alojamiento</p>
+
+    <form class="property-form">
+      <label for="title">Título del anuncio</label>
+      <input type="text" id="title" placeholder="Ej: Hermoso depto frente al mar" />
+
+      <label for="description">Descripción</label>
+      <textarea id="description" placeholder="Contá los detalles importantes del alojamiento..."></textarea>
+
+      <label for="address">Dirección</label>
+      <input type="text" id="address" placeholder="Ej: Av. Siempreviva 742, Springfield" />
+
+      <label for="type">Tipo de alojamiento</label>
+      <select id="type">
+        <option value="">Seleccionar</option>
+        <option value="departamento">Departamento</option>
+        <option value="casa">Casa</option>
+        <option value="habitacion">Habitación privada</option>
+      </select>
+
+      <div class="inline-fields">
+        <div>
+          <label for="rooms">Habitaciones</label>
+          <input type="number" id="rooms" min="1" value="1" />
+        </div>
+        <div>
+          <label for="bathrooms">Baños</label>
+          <input type="number" id="bathrooms" min="1" value="1" />
+        </div>
+      </div>
+
+      <label for="price">Precio por noche (USD)</label>
+      <input type="number" id="price" min="0" step="1" placeholder="Ej: 120" />
+
+      <label for="image">Imagen del alojamiento</label>
+      <input type="file" id="image" accept="image/*" />
+
+      <a href="revision.html" class="submit-button">Publicar propiedad</a>
+
+    </form>
+  </div>
+</body>
+</html>
