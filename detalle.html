@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-      <div class="logo">airbnb</div>
+      <div class="logo"><a href="index.html">airbnb</a></div>
       <div class="search-bar">
         <input type="text" placeholder="¿A dónde vas?" />
         <button>Buscar</button>
@@ -37,13 +37,13 @@
 
         <div class="property-images">
             <div class="main-image">
-                <img src="https://via.placeholder.com/600x400?text=Playa+Principal" alt="Imagen principal de la casa en la playa">
+                <img src="img/casa-en-la-playa-5.jpg" alt="Imagen principal de la casa en la playa">
             </div>
             <div class="grid-images">
-                <img src="https://via.placeholder.com/300x200?text=Playa+Interior+1" alt="Imagen interior 1">
-                <img src="https://via.placeholder.com/300x200?text=Playa+Exterior+2" alt="Imagen exterior 2">
+                <img src="img/casa-playa-interior.jpg" alt="Imagen interior 1">
+              <!--  <img src="https://via.placeholder.com/300x200?text=Playa+Exterior+2" alt="Imagen exterior 2">
                 <img src="https://via.placeholder.com/300x200?text=Playa+Dormitorio" alt="Imagen dormitorio">
-                <img src="https://via.placeholder.com/300x200?text=Playa+Cocina" alt="Imagen cocina">
+                <img src="https://via.placeholder.com/300x200?text=Playa+Cocina" alt="Imagen cocina"> -->
             </div>
         </div>
 
@@ -52,7 +52,7 @@
                 <h2>Vivienda entera en la playa de Mar del Plata</h2>
                 <p>4 huéspedes · 2 dormitorios · 3 camas · 2 baños</p>
                 <div class="host-info">
-                    <img src="https://via.placeholder.com/50x50" alt="Foto del anfitrión" class="host-avatar">
+                    <img src="img/foto perfil 1 mujer.jpg" alt="Foto del anfitrión" class="host-avatar">
                     <div>
                         <p>Anfitrión: Ana Fernández</p>
                         <p>Superanfitrión</p>
@@ -63,7 +63,7 @@
                     Disfrutá de la brisa marina y el sonido de las olas en esta hermosa casa frente al mar en Mar del Plata. Ideal para familias o grupos de amigos que buscan una escapada relajante. Acceso directo a la playa y cerca de los mejores restaurantes de mariscos. ¡Tus vacaciones soñadas te esperan!
                 </p>
                 <hr>
-                <h3>¿Qué ofrece este alojamiento?</h3>
+                <h2>¿Qué ofrece este alojamiento?</h2>
                 <ul class="amenities-list">
                     <li><i class="fas fa-wifi"></i> Wifi</li>
                     <li><i class="fas fa-utensils"></i> Cocina</li>
@@ -100,28 +100,39 @@
                                 <i class="far fa-calendar-alt"></i> </div>
                         </div>
                         <div class="guests">
-                            <label for="guests">Huéspedes</label>
-                            <select id="guests">
-                                <option value="1">1 huésped</option>
-                                <option value="2">2 huéspedes</option>
-                                <option value="3" selected>3 huéspedes</option>
-                                <option value="4">4 huéspedes</option>
+                            <label for="adultos">Adultos</label>
+                            <select id="adultos">
+                                <option value="1">1 </option>
+                                <option value="2">2 </option>
+                                <option value="3">3 </option>
+                                <option value="4" selected>4 </option>
+                            </select>
+                        </div>
+                        <div class="guests">
+                            <label for="menores">Menores</label>
+                            <select id="menores">
+                                <option value="0" selected>0 </option>
+                                <option value="1">1 </option>
+                                <option value="2">2 </option>
+                                <option value="3">3 </option>
+                                <option value="4">4 </option>
                             </select>
                         </div>
                     </div>
                     <button class="reserve-button">Reservar</button>
                     <p class="small-text">No se te cobrará nada aún</p>
+                    <span id="precio-noche" style="display: none;">45000</span>
+                    
                     <div class="price-breakdown">
-                        <p><span>$45.000 x 3 noches</span> <span>$135.000</span></p>
                         <p><span>Tarifa de limpieza</span> <span>$2.000</span></p>
                         <p><span>Tarifa de servicio Airbnb</span> <span>$6.000</span></p>
-                        <p class="total-price"><strong>Total</strong> <strong>$143.000</strong></p>
+                        <p><strong>Total hospedaje: <span id="total-hospedaje">$0</span></strong></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <section class="reviews">
+       <!-- <section class="reviews">
             <h2><i class="fas fa-star"></i> 4.95 · 210 evaluaciones</h2>
             <div class="review-grid">
                 <div class="review-item">
@@ -145,11 +156,73 @@
                     <p>Excelente experiencia. La casa es muy cómoda y la cercanía a la playa es un plus. Volveremos sin dudas.</p>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 
     <footer>
         <p>&copy; 2025 Airbnb. Todos los derechos reservados.</p>
     </footer>
+
+
+    <!--  Script para calcular el precio x cant. de noches -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const adultos = document.getElementById("adultos");
+        const menores = document.getElementById("menores");
+        const checkIn = document.getElementById("check-in");
+        const checkOut = document.getElementById("check-out");
+        const totalHospedaje = document.getElementById("total-hospedaje");
+        const precioNoche = parseInt(document.getElementById("precio-noche").textContent);
+        const priceBreakdown = document.querySelector(".price-breakdown");
+
+        const tarifaLimpieza = 2000;
+        const tarifaServicio = 6000;
+
+        function validarHuespedes() {
+          const total = parseInt(adultos.value) + parseInt(menores.value);
+          if (total > 4) {
+            alert("No se permiten más de 4 huéspedes en total.");
+            if (parseInt(adultos.value) === 4) {
+              menores.value = 0;
+            } else {
+              menores.value = 4 - parseInt(adultos.value);
+            }
+          }
+        }
+
+        function calcularTotal() {
+            const fechaIn = new Date(checkIn.value);
+            const fechaOut = new Date(checkOut.value);
+
+        if (checkIn.value && checkOut.value && fechaOut > fechaIn) {
+            const noches = Math.ceil((fechaOut - fechaIn) / (1000 * 60 * 60 * 24));
+            const subtotal = noches * precioNoche;
+            const total = subtotal + tarifaLimpieza + tarifaServicio;
+
+            totalHospedaje.textContent = `$${total.toLocaleString("es-AR")}`;
+
+            priceBreakdown.innerHTML = `
+             <p><span>$${precioNoche.toLocaleString("es-AR")} x ${noches} noche${noches > 1 ? 's' : ''}</span> <span>$${subtotal.toLocaleString("es-AR")}</span></p>
+             <p><span>Tarifa de limpieza</span> <span>$${tarifaLimpieza.toLocaleString("es-AR")}</span></p>
+             <p><span>Tarifa de servicio Airbnb</span> <span>$${tarifaServicio.toLocaleString("es-AR")}</span></p>
+             <p class="total-price"><strong>Total</strong> <strong>$${total.toLocaleString("es-AR")}</strong></p> `;
+      
+        } else {
+            totalHospedaje.textContent = "$0";
+            priceBreakdown.innerHTML = `
+            <p><span>$${precioNoche.toLocaleString("es-AR")} x 0 noches</span> <span>$0</span></p>
+            <p><span>Tarifa de limpieza</span> <span>$${tarifaLimpieza.toLocaleString("es-AR")}</span></p>
+            <p><span>Tarifa de servicio Airbnb</span> <span>$${tarifaServicio.toLocaleString("es-AR")}</span></p>
+            <p class="total-price"><strong>Total</strong> <strong>$0</strong></p>
+        `;
+      }
+    }
+
+        adultos.addEventListener("change", validarHuespedes);
+        menores.addEventListener("change", validarHuespedes);
+        checkIn.addEventListener("change", calcularTotal);
+        checkOut.addEventListener("change", calcularTotal);
+      });
+    </script>
   </body>
 </html>
