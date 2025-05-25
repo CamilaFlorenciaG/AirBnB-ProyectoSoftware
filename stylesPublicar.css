@@ -1,5 +1,5 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background-color: #f7f7f7;
   margin: 0;
   padding: 0;
@@ -76,3 +76,18 @@ h1 {
 .submit-button:hover {
   background-color: #e0484c;
 }
+
+
+
+
+textarea {
+  font-family: 'Arial', sans-serif;  /* Cambiá 'Arial' por la fuente que quieras */
+  font-size: 16px;                   /* También podés ajustar el tamaño */
+  color: #333;                       /* Color del texto */
+}
+
+
+
+
+
+
