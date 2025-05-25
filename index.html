@@ -1,4 +1,84 @@
-        <img
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maqueta Airbnb</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="modal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">airbnb</div>
+    <div class="search-bar">
+      <input type="text" placeholder="¿A dónde vas?" />
+      <button>Buscar</button>
+    </div>
+    <nav class="menu">
+      <a href="#">Hospeda</a>
+      <a href="#">Ayuda</a>
+      <!-- Botón para abrir el modal -->
+      <button id="abrirModal" class="login-button">Iniciar sesión</button>
+    </nav>
+  </header>
+
+    <main>
+      <h2>Explorá alojamientos populares</h2>
+      <section class="cards">
+        <div class="card">
+          <img src="img/casa-en-la-playa-5.jpg" alt="Casa en la playa" />
+          <div class="info">
+            <h3>Casa en la playa</h3>
+            <p>Mar del Plata, Argentina</p>
+            <p>$45.000 / noche</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/bosque.jpg" alt="Cabaña en la montaña" />
+          <div class="info">
+            <h3>Cabaña en la montaña</h3>
+            <p>Bariloche, Argentina</p>
+            <p>$60.000 / noche</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/ciudad.jpg" alt="Departamento en ciudad" />
+          <div class="info">
+            <h3>Departamento en ciudad</h3>
+            <p>Buenos Aires, Argentina</p>
+            <p>$38.000 / noche</p>
+          </div>
+        </div>
+        <!-- 🆕 Tarjeta 4 -->
+        <div class="card">
+          <img
+            src="img/rural.jpg"
+            alt="Casa rural con jardín"
+          />
+          <div class="info">
+            <h3>Casa rural con jardín</h3>
+            <p>Tandil, Argentina</p>
+            <p>$30.000 / noche</p>
+          </div>
+        </div>
+
+        <!-- 🆕 Tarjeta 5 -->
+        <div class="card">
+          <img src="img/loft.jpg" alt="Loft moderno" />
+          <div class="info">
+            <h3>Loft moderno</h3>
+            <p>Córdoba, Argentina</p>
+            <p>$55.000 / noche</p>
+          </div>
+        </div>
+
+        <!-- 🆕 Tarjeta 6 -->
+        <div class="card">
+          <img
             src="img/casa-bosque-jardin.jpg"
             alt="Casa en el bosque"
           />
