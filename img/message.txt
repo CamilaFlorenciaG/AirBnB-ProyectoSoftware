@@ -116,20 +116,3 @@ footer {
   border-top: 1px solid #eee;
   margin-top: auto; /* 👈 Este es el truco para empujarlo al fondo */
 }
-
-.login-button {
-  background: none;
-  border: none;
-  color: #ff5a5f;
-  font-size: 16px;
-  cursor: pointer;
-  padding-left: 20px;
-  
-}
-
-.login-button:hover {
-  color: #e0484c;
-}
-
-
-
