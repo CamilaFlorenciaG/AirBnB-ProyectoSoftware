@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maqueta Airbnb</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="logo">airbnb</div>
-      <div class="search-bar">
-        <input type="text" placeholder="¿A dónde vas?" />
-        <button>Buscar</button>
-      </div>
-      <nav class="menu">
-        <a href="#">Hazte anfitrión</a>
-        <a href="#">Ayuda</a>
-        <a href="#">Iniciar sesión</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maqueta Airbnb</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="modal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">airbnb</div>
+    <div class="search-bar">
+      <input type="text" placeholder="¿A dónde vas?" />
+      <button>Buscar</button>
+    </div>
+    <nav class="menu">
+      <a href="#">Hazte anfitrión</a>
+      <a href="#">Ayuda</a>
+      <!-- Botón para abrir el modal -->
+      <button id="abrirModal" class="login-button">Iniciar sesión</button>
+    </nav>
+  </header>
 
     <main>
       <h2>Explorá alojamientos populares</h2>
@@ -142,4 +141,45 @@
       <p>© 2025 Maqueta Airbnb — Creado con fines educativos</p>
     </footer>
   </body>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <button class="close-button" id="cerrarModal">×</button>
+      <h2>Iniciá sesión o registrate</h2>
+      <p class="welcome-text">Te damos la bienvenida a Airbnb</p>
+
+      <label for="country">País/región</label>
+      <select id="country">
+        <option value="ar">Argentina (+54)</option>
+        <option value="br">Brasil (+55)</option>
+        <option value="us">Estados Unidos (+1)</option>
+      </select>
+
+      <label for="phone">Número de teléfono</label>
+      <input type="tel" id="phone" placeholder="Número de teléfono" />
+
+      <p class="privacy">
+        Vamos a llamarte o enviarte un mensaje para confirmar el número. Se aplican tarifas estándar.
+        <a href="#">Política de privacidad</a>
+      </p>
+
+      <button class="continue-button">Continuar</button>
+
+      <div class="divider"><span>o</span></div>
+
+      <button class="social-button google">
+        <img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Registrate con Google
+      </button>
+      <button class="social-button apple">
+        <img src="https://img.icons8.com/ios-filled/16/000000/mac-os.png" /> Continuar con Apple
+      </button>
+      <button class="social-button email">
+        Registrate con un correo electrónico
+      </button>
+    </div>
+  </div>
+
+  <script src="modal.js"></script>
+</body>
 </html>
