@@ -1,0 +1,887 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🔧 Agregado */
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7; /* Fondo claro */
+  color: #333; /* Texto oscuro */
+}
+
+/* HEADER - Estilos existentes + adaptaciones para la página de detalle */
+header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* 🔥 Removido: height: 100%; y flex-direction innecesario */
+}
+
+.logo-link {
+  text-decoration: none; /* Esto quita el subrayado del enlace */
+  color: inherit; /* Asegura que herede el color de su contenido, que es el .logo */
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff5a5f;
+  color: #ff5a5f; /* Rojo Airbnb */
+}
+
+/* Search bar principal (para index.html) */
+.search-bar {
+  flex: 1;
+  margin: 0 2rem;
+  display: flex;
+  max-width: 500px; /* Limitar el ancho para que no sea tan grande */
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none; /* Quitar el contorno al enfocar */
+}
+
+.search-bar button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #ff5a5f;
+  color: white;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-bar button:hover {
+  background-color: #e00000; /* Rojo un poco más oscuro al pasar el mouse */
+}
+
+/* Search bar pequeña (para detalle_casa.html) */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-bar-small {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 5px 10px; /* Reducimos el padding general para hacerla más compacta */
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+  /* Estilos para los inputs dentro de la barra de búsqueda pequeña */
+  justify-content: space-between; /* Distribuye el espacio entre los inputs */
+  flex-grow: 1; /* Permite que ocupe más espacio si es necesario */
+}
+
+.search-bar-small input {
+  border: none;
+  background: transparent;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  /* Eliminamos el width fijo para que los inputs se ajusten mejor */
+  flex-grow: 1; /* Permite que los inputs crezcan para llenar el espacio */
+}
+
+.search-bar-small input::placeholder {
+  color: #888;
+}
+
+.search-bar-small button {
+  background-color: #ff5a5f; /* Color de Airbnb */
+  border: none;
+  border-radius: 50%; /* Para que sea un círculo perfecto */
+  width: 38px; /* Aumentamos ligeramente el tamaño */
+  height: 38px; /* Aseguramos que sea un círculo */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente la lupa */
+  align-items: center; /* Centra verticalmente la lupa */
+  cursor: pointer;
+  color: #fff; /* Color blanco para el icono de la lupa */
+  transition: background-color 0.2s ease;
+  flex-shrink: 0; /* Evita que el botón se encoja */
+  margin-left: 5px; /* Un pequeño margen para separarlo del último input */
+}
+
+.search-bar-small button:hover {
+  background-color: #e00000;
+}
+
+/* MENU - Estilos existentes + adaptaciones para la página de detalle */
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu a {
+  margin-left: 1rem;
+  color: #555;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+  background-color: #f0f0f0; /* Fondo claro al pasar el mouse */
+  color: #333;
+}
+
+.menu .menu-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 30px;
+  background-color: #fff;
+  color: #555; /* Iconos y texto oscuro */
+}
+
+.menu .menu-icon .fas {
+  font-size: 18px;
+  color: #555;
+}
+
+
+/* MAIN - Estilos existentes */
+main {
+  padding: 2rem;
+  max-width: 1200px; /* Asegura un ancho máximo para centrar el contenido principal */
+  margin: 0 auto; /* Centra el contenido principal */
+}
+
+main h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Cards (para index.html) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch; /* 🔧 importante para que las tarjetas se igualen en altura */
+  gap: 20px; /* Aumentamos el gap ligeramente para que se note el cambio pero sigan juntos */
+  justify-items: center; /* Centra las tarjetas si hay espacio extra */
+  padding: 0 10px; /* Pequeño padding para que no se peguen a los bordes */
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* asegura que cada tarjeta use todo el espacio disponible */
+  width: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible en la columna */
+  max-width: 350px; /* Un máximo para que no se estiren demasiado en pantallas muy anchas */
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card a { /* Para el enlace en la tarjeta */
+  text-decoration: none;
+  color: inherit; /* Heredar color del texto */
+  display: block; /* Para que el enlace ocupe toda la tarjeta */
+}
+
+.card img {
+  width: 100%;
+  height: 200px; /* fija la altura para que todas se vean iguales */
+  object-fit: cover; /* mantiene el recorte uniforme, sin deformar */
+  height: 200px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 1rem;
+}
+
+.info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.info p {
+  color: #555;
+}
+
+
+/* --- ESTILOS ESPECÍFICOS PARA LA PÁGINA DE DETALLES (detalle_casa.html) --- */
+.property-detail {
+  max-width: 1000px; /* Reducimos ligeramente el max-width para ganar espacio a los lados */
+  margin: 30px auto 50px auto;
+  padding: 0 20px; /* Aseguramos padding horizontal */
+}
+
+.property-detail h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #333; /* Texto oscuro */
+}
+
+.property-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #666; /* Texto más oscuro */
+  font-size: 14px;
+}
+
+.property-actions span a {
+  color: #666;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.property-actions .buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.property-actions .buttons a {
+  color: #333; /* Texto oscuro */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.property-actions .buttons a:hover {
+  background-color: #f0f0f0;
+}
+
+.property-images {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
+.property-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.property-images .main-image {
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
+
+.property-images .main-image img {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.property-images .grid-images {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.property-images .grid-images img:nth-child(2n-1) {
+  border-top-right-radius: 12px;
+}
+
+.property-images .grid-images img:nth-child(2n) {
+  border-bottom-right-radius: 12px;
+}
+
+.show-all-photos {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo más claro para el botón */
+  color: #333; /* Texto oscuro */
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.show-all-photos:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.property-overview {
+  display: flex;
+  gap: 50px;
+  border-bottom: 1px solid #eee; /* Borde más claro */
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.overview-left {
+  flex: 2;
+  /* QUITAMOS CUALQUIER ANCHO FIJO O MARGENES EN EL overview-left para que se ajuste */
+  padding-right: 20px; /* Añade un poco de espacio si el overview-right está muy pegado */
+}
+
+.overview-left h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.overview-left p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.host-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.host-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.host-info p {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.host-info p:last-child {
+  font-weight: 400;
+  color: #777;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee; /* Borde más claro */
+  margin: 30px 0;
+}
+
+.description {
+  color: #555;
+}
+
+.amenities-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Más flexible */
+  gap: 15px;
+  font-size: 16px;
+  text-align: left; /* Asegura la alineación a la izquierda */
+  margin-left: 0; /* Elimina cualquier margen residual */
+}
+
+.amenities-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+}
+
+.amenities-list li .fas {
+  font-size: 20px;
+  color: #ff5a5f; /* Iconos de Airbnb rojo */
+}
+
+.overview-right {
+  flex: 1;
+  min-width: 300px; /* Asegura un ancho mínimo para la caja de reserva */
+}
+
+.booking-box {
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #ddd; /* Borde más claro */
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+  position: sticky;
+  top: 20px;
+}
+
+.booking-box .price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.booking-box .price p {
+  font-size: 22px;
+  margin: 0;
+  color: #333;
+}
+
+.booking-box .price .rating {
+  font-size: 14px;
+  color: #666;
+}
+
+.booking-box .price .rating .fas {
+  color: #ff5a5f; /* Estrella roja */
+}
+
+.booking-inputs {
+  border: 1px solid #ccc; /* Borde más claro */
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.booking-inputs .dates {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.booking-inputs .dates > div {
+  flex: 1;
+  padding: 10px 15px;
+  position: relative;
+}
+
+.booking-inputs .dates > div:first-child {
+  border-right: 1px solid #ccc;
+}
+
+.booking-inputs label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #777;
+}
+
+.booking-inputs input,
+.booking-inputs select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #333; /* Texto oscuro */
+  font-size: 16px;
+  outline: none;
+  padding: 0;
+}
+
+.booking-inputs select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23333"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>'); /* Icono de flecha para select en negro */
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 1em;
+  cursor: pointer;
+}
+
+.booking-inputs .guests {
+  padding: 10px 15px;
+}
+
+.reserve-button {
+  width: 100%;
+  background-color: #ff5a5f; /* Rojo Airbnb */
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.reserve-button:hover {
+  background-color: #e00000;
+}
+
+.small-text {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.price-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.price-breakdown p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  color: #555;
+}
+
+.price-breakdown .total-price {
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee; /* Borde más claro */
+  color: #333;
+}
+
+/* Reviews section */
+.reviews {
+  max-width: 1000px; /* Ajustado al mismo max-width que .property-detail */
+  margin: 50px auto 30px auto;
+  padding: 0 20px;
+  text-align: left; /* Asegura la alineación a la izquierda */
+}
+
+.reviews h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+}
+
+.reviews h2 .fas {
+  color: #ff5a5f; /* Estrella roja */
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.review-item {
+  background-color: #fff; /* Fondo blanco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.08); /* Sombra suave */
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.reviewer-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reviewer-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.reviewer-info .date {
+  font-size: 13px;
+  color: #777;
+}
+
+.review-item p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.show-all-reviews {
+  background: none;
+  border: 1px solid #777; /* Borde oscuro */
+  color: #333; /* Texto oscuro */
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.show-all-reviews:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+
+/* FOOTER - Estilos existentes */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+<<<<<<< Updated upstream
+  margin-top: auto; /* 👈 Este es el truco para empujarlo al fondo */
+  color: #777;
+  font-size: 14px;
+=======
+  margin-top: auto;
+>>>>>>> Stashed changes
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+  }
+
+  .header-left {
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 15px;
+  }
+
+  .search-bar-small {
+      /* Puedes optar por ocultarla o simplificarla mucho */
+      display: none;
+  }
+
+  .search-bar { /* Asegurarse de que la search bar principal también se adapte */
+      margin: 0;
+      width: 100%;
+  }
+
+  .search-bar-small button .fas {
+    font-size: 16px; /* Ajustamos el tamaño del icono de la lupa */
+}
+
+  .menu {
+      width: 100%;
+      justify-content: space-around;
+      gap: 10px;
+      margin-top: 10px;
+  }
+
+  .menu a {
+      margin-left: 0;
+      padding: 8px;
+      font-size: 0.9rem;
+  }
+
+  .property-detail {
+      padding: 0 15px;
+  }
+
+  .property-images {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+  }
+
+  .property-images .main-image {
+      grid-column: 1 / 2;
+      grid-row: auto;
+  }
+
+  .property-images .grid-images {
+      grid-column: 1 / 2;
+      grid-row: auto;
+      grid-template-columns: 1fr;
+  }
+
+  .property-images .main-images img,
+  .property-images .grid-images img {
+      border-radius: 0 !important;
+  }
+
+  .show-all-photos {
+      bottom: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+  }
+
+  .property-overview {
+      flex-direction: column;
+      gap: 30px;
+  }
+
+  .booking-box {
+      position: static;
+      top: auto;
+  }
+
+  .review-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .amenities-list {
+      grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  }
+}
+
+/* Estilos para el select en Firefox */
+@-moz-document url-prefix() {
+  .booking-inputs select {
+      padding-right: 25px; /* Deja espacio para el icono de flecha */
+  }
+}
+
+.calendar-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.calendar-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.calendar-display {
+  display: flex; /* Para un futuro si quieres mostrar dos meses */
+  justify-content: center;
+  gap: 20px;
+}
+
+.calendar-month {
+  flex: 1; /* Ocupa el espacio disponible */
+  max-width: 300px; /* Ancho máximo para el calendario */
+  text-align: center;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.month-header h4 {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.nav-arrow {
+  cursor: pointer;
+  color: #777;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.nav-arrow:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-arrow .fas {
+  font-size: 1rem;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.weekdays span {
+  text-align: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  padding: 8px 0;
+  border-radius: 50%; /* Para hacer los días circulares */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  height: 38px; /* Asegura un tamaño uniforme para los círculos */
+  width: 38px; /* Asegura un tamaño uniforme para los círculos */
+  box-sizing: border-box; /* Importante para que padding y border no aumenten el tamaño total */
+}
+
+/* Estilos para los estados de los días */
+.day.available {
+  color: #333;
+  /* border: 1px solid transparent; */ /* Puedes añadir un borde sutil si quieres */
+}
+
+.day.available:hover {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+
+.day.reserved {
+  background-color: #eee; /* Fondo gris para días reservados */
+  color: #999; /* Texto más claro para días reservados */
+  cursor: not-allowed;
+  /* border: 1px solid #ccc; */
+}
+
+.day.disabled {
+  color: #ccc; /* Días de meses anteriores/siguientes */
+  cursor: not-allowed;
+}
+
+/* Opcional: estilo para un día seleccionado */
+.day.selected {
+  background-color: #ff5a5f; /* Color de Airbnb */
+  color: white;
+  font-weight: bold;
+}
