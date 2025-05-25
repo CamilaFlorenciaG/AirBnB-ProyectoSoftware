@@ -656,11 +656,14 @@ footer {
   text-align: center;
   padding: 1rem;
   background-color: #fff;
-  margin-top: 2rem;
   border-top: 1px solid #eee;
+<<<<<<< Updated upstream
   margin-top: auto; /* 👈 Este es el truco para empujarlo al fondo */
   color: #777;
   font-size: 14px;
+=======
+  margin-top: auto;
+>>>>>>> Stashed changes
 }
 
 /* Responsive adjustments */
