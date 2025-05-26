@@ -56,6 +56,12 @@ header {
   cursor: pointer;
 }
 
+.menu {
+  display: flex;
+  gap: 2rem; /* Espaciado uniforme entre los elementos */
+  align-items: center; /* Alineación vertical */
+}
+
 .menu a {
   margin-left: 1rem;
   color: #555;
@@ -116,3 +122,25 @@ footer {
   border-top: 1px solid #eee;
   margin-top: auto; /* 👈 Este es el truco para empujarlo al fondo */
 }
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.login-button {
+  background-color: #ff385c; /* color típico de Airbnb */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e11d48; /* un tono más oscuro al hacer hover */
+}
+
