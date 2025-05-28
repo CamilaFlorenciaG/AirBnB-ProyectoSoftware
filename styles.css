@@ -116,3 +116,8 @@ footer {
   border-top: 1px solid #eee;
   margin-top: auto; /* 👈 Este es el truco para empujarlo al fondo */
 }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
