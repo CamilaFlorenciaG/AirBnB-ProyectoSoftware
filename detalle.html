@@ -163,6 +163,19 @@
         <p>&copy; 2025 Airbnb. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Modal Compartir -->
+    <div id="modalCompartir" class="modal-compartir oculto">
+    <div class="modal-airbnb">
+        <span class="cerrar" id="cerrarModal">&times;</span>
+        <h2>Compartir este alojamiento</h2>
+        <input type="text" id="enlaceCompartir" value="https://airbnb.com/detalle.html" readonly />
+
+        <button class="btn-principal" onclick="copiarEnlace()">Copiar enlace</button>
+
+
+    </div>
+    </div>
+
 
     <!--  Script para calcular el precio x cant. de noches -->
     <script>
@@ -224,5 +237,43 @@
         checkOut.addEventListener("change", calcularTotal);
       });
     </script>
+    <script>
+        const modal = document.getElementById("modalCompartir");
+        const abrir = document.querySelector(".buttons a[href='#']");
+        const cerrar = document.getElementById("cerrarModal");
+
+        abrir.addEventListener("click", function (e) {
+            e.preventDefault();
+            modal.style.display = "flex";
+        });
+
+        cerrar.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (e) {
+            if (e.target === modal) {
+            modal.style.display = "none";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const url = encodeURIComponent(window.location.href);
+        const mensaje = encodeURIComponent("¡Mirá este alojamiento en Airbnb!");
+
+        });
+
+
+        function copiarEnlace() {
+            const input = document.getElementById("enlaceCompartir");
+            input.select();
+            input.setSelectionRange(0, 99999); // para móviles
+            document.execCommand("copy");
+            alert("¡Enlace copiado!");
+        }
+    </script>
+
   </body>
+
+
 </html>
