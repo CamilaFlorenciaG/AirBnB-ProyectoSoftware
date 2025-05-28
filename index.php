@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,10 +21,17 @@
       </form>
     </div>
     <nav class="menu">
-      <a href="#">Hazte anfitrión</a>
-      <a href="publicar.php">Publicar alojamiento</a>
-      <a href="#">Ayuda</a>
-      <button id="abrirModal" class="login-button">Iniciar sesión</button>
+      <?php if (isset($_SESSION['persona_id'])): ?>
+        <span>Hola, <?php echo htmlspecialchars($_SESSION['persona_nombre']); ?></span>
+        <a href="logout.php">Cerrar sesión</a>
+        <a href="publicar.php">Publicar alojamiento</a>
+        <a href="#">Ayuda</a>
+      <?php else: ?>
+        <a href="#">Hazte anfitrión</a>
+        <a href="publicar.php">Publicar alojamiento</a>
+        <a href="#">Ayuda</a>
+        <button id="abrirModal" class="login-button">Iniciar sesión</button>
+      <?php endif; ?>
     </nav>
   </header>
 
@@ -85,18 +95,8 @@
 
         <button type="submit" class="continue-button">Iniciar sesión</button>
       </form>
+      <a href="registro.php" class="social-button email">Registrate con un correo electrónico</a>
 
-      <div class="divider"><span>o</span></div>
-
-      <button class="social-button google">
-        <img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Registrate con Google
-      </button>
-      <button class="social-button apple">
-        <img src="https://img.icons8.com/ios-filled/16/000000/mac-os.png" /> Continuar con Apple
-      </button>
-      <button class="social-button email">
-        Registrate con un correo electrónico
-      </button>
     </div>
   </div>
 
