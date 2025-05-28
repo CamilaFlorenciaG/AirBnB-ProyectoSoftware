@@ -43,8 +43,27 @@
       <label for="price">Precio por noche (USD)</label>
       <input type="number" id="price" name="price" min="0" step="1" placeholder="Ej: 120" required />
 
-      <label for="image">Imagen del alojamiento</label>
-      <input type="file" id="image" name="image" accept="image/*" required />
+      <fieldset>
+        <legend>Servicios disponibles</legend>
+        <label><input type="checkbox" name="tieneWifi" value="1"> Wifi</label><br>
+        <label><input type="checkbox" name="tieneCocina" value="1"> Cocina</label><br>
+        <label><input type="checkbox" name="tieneAire" value="1"> Aire acondicionado</label><br>
+        <label><input type="checkbox" name="tieneTelevision" value="1"> Televisión</label>
+      </fieldset>
+
+
+      <label for="image1">Imagen principal del alojamiento</label>
+      <input type="file" id="image1" name="image1" accept="image/*" required />
+
+      <label for="image2">Imagen adicional 2</label>
+      <input type="file" id="image2" name="image2" accept="image/*" />
+
+      <label for="image3">Imagen adicional 3</label>
+      <input type="file" id="image3" name="image3" accept="image/*" />
+
+      <label for="image4">Imagen adicional 4</label>
+      <input type="file" id="image4" name="image4" accept="image/*" />
+
 
       <button type="submit" class="submit-button">Publicar propiedad</button>
     </form>

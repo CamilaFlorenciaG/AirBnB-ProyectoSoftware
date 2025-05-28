@@ -68,11 +68,35 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
       </div>
     </div>
 
-    <div class="property-images">
+ <!--   <div class="property-images">
       <div class="main-image">
         <img src="<?= htmlspecialchars($alojamiento['urlimg']) ?>" alt="Imagen principal del alojamiento">
       </div>
-    </div>
+    </div> -->
+
+    <div class="galeria-imagenes">
+  <a href="<?= htmlspecialchars($alojamiento['urlimg']) ?>" target="_blank">
+    <img src="<?= htmlspecialchars($alojamiento['urlimg']) ?>" class="img-principal" alt="Imagen principal">
+  </a>
+  <div class="imagenes-secundarias">
+    <?php if (!empty($alojamiento['urlimg2'])): ?>
+      <a href="<?= htmlspecialchars($alojamiento['urlimg2']) ?>" target="_blank">
+        <img src="<?= htmlspecialchars($alojamiento['urlimg2']) ?>" alt="Imagen 2">
+      </a>
+    <?php endif; ?>
+    <?php if (!empty($alojamiento['urlimg3'])): ?>
+      <a href="<?= htmlspecialchars($alojamiento['urlimg3']) ?>" target="_blank">
+        <img src="<?= htmlspecialchars($alojamiento['urlimg3']) ?>" alt="Imagen 3">
+      </a>
+    <?php endif; ?>
+    <?php if (!empty($alojamiento['urlimg4'])): ?>
+      <a href="<?= htmlspecialchars($alojamiento['urlimg4']) ?>" target="_blank">
+        <img src="<?= htmlspecialchars($alojamiento['urlimg4']) ?>" alt="Imagen 4">
+      </a>
+    <?php endif; ?>
+  </div>
+</div>
+
 
     <div class="property-overview">
       <div class="overview-left">
@@ -90,11 +114,28 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
         <hr>
         <h2>¿Qué ofrece este alojamiento?</h2>
         <ul class="amenities-list">
-          <li><i class="fas fa-wifi"></i> Wifi</li>
-          <li><i class="fas fa-utensils"></i> Cocina</li>
-          <li><i class="fas fa-snowflake"></i> Aire acondicionado</li>
-          <li><i class="fas fa-tv"></i> Televisión</li>
+            <?php if ($alojamiento['tieneWifi']): ?>
+                <li><i class="fas fa-wifi"></i> Wifi</li>
+            <?php endif; ?>
+            <?php if ($alojamiento['tieneCocina']): ?>
+                <li><i class="fas fa-utensils"></i> Cocina</li>
+            <?php endif; ?>
+            <?php if ($alojamiento['tieneAire']): ?>
+                <li><i class="fas fa-snowflake"></i> Aire acondicionado</li>
+            <?php endif; ?>
+            <?php if ($alojamiento['tieneTelevision']): ?>
+                <li><i class="fas fa-tv"></i> Televisión</li>
+            <?php endif; ?>
+            <?php if (
+                !$alojamiento['tieneWifi'] &&
+                !$alojamiento['tieneCocina'] &&
+                !$alojamiento['tieneAire'] &&
+                !$alojamiento['tieneTelevision']
+            ): ?>
+                <li>No se especificaron servicios.</li>
+            <?php endif; ?>
         </ul>
+
       </div>
 
       <div class="overview-right">
@@ -201,5 +242,41 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
       checkOut.addEventListener("change", calcularTotal);
     });
   </script>
+  <style>
+  .galeria-imagenes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .img-principal {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .imagenes-secundarias {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .imagenes-secundarias img {
+    width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .imagenes-secundarias img:hover {
+    transform: scale(1.03);
+  }
+</style>
+
 </body>
 </html>
