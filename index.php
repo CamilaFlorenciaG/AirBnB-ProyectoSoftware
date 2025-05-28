@@ -54,16 +54,18 @@ session_start();
       if ($resultado->num_rows > 0) {
         while ($row = $resultado->fetch_assoc()) {
           echo '
-            <div class="card">
-              <img src="' . htmlspecialchars($row["urlimg"]) . '" alt="' . htmlspecialchars($row["titulo"]) . '" />
-              <div class="info">
-                <h3>' . htmlspecialchars($row["titulo"]) . '</h3>
-                <p>' . htmlspecialchars($row["descripcion"]) . '</p>
-                <p>' . ($row["disponible"]
-                          ? "$" . number_format($row["precio_por_noche"], 2) . " / noche"
-                          : "No disponible") . '</p>
+            <a href="detalle.php?id=' . $row["id"] . '" class="card-link">
+              <div class="card">
+                <img src="' . htmlspecialchars($row["urlimg"]) . '" alt="' . htmlspecialchars($row["titulo"]) . '" />
+                <div class="info">
+                  <h3>' . htmlspecialchars($row["titulo"]) . '</h3>
+                  <p>' . htmlspecialchars($row["descripcion"]) . '</p>
+                  <p>' . ($row["disponible"]
+                            ? "$" . number_format($row["precio_por_noche"], 2) . " / noche"
+                            : "No disponible") . '</p>
+                </div>
               </div>
-            </div>';
+            </a>';
         }
       } else {
         echo "<p>No se encontraron alojamientos.</p>";
