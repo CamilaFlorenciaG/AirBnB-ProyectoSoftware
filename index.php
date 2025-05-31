@@ -59,7 +59,7 @@ session_start();
                 <img src="' . htmlspecialchars($row["urlimg"]) . '" alt="' . htmlspecialchars($row["titulo"]) . '" />
                 <div class="info">
                   <h3>' . htmlspecialchars($row["titulo"]) . '</h3>
-                  <p>' . htmlspecialchars($row["descripcion"]) . '</p>
+                  <p>' . htmlspecialchars(mb_substr($row["descripcion"], 0, 120)) . (mb_strlen($row["descripcion"]) > 120 ? '...' : '') . '</p>
                   <p>' . ($row["disponible"]
                             ? "$" . number_format($row["precio_por_noche"], 2) . " / noche"
                             : "No disponible") . '</p>

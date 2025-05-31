@@ -73,10 +73,17 @@ main h2 {
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
-  align-items: stretch; /* 🔧 importante para que las tarjetas se igualen en altura */
+  justify-content: center; /* ✅ centra aunque haya solo 1 */
+}
+
+.card-link {
+  width: 300px; /* ✅ Fuerza el ancho fijo */
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .card {
@@ -87,7 +94,9 @@ main h2 {
   transition: transform 0.2s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; /* asegura que cada tarjeta use todo el espacio disponible */
+  height: 100%;
+  max-width: 300px;
+  /* ❌ eliminar esto: margin: 0 auto; */
 }
 
 .card:hover {
