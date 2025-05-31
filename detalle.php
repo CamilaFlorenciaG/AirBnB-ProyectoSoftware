@@ -1,11 +1,7 @@
 <?php
 session_start();
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "1234", "airbnb");
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
-}
-
+include 'db.php';
 // Obtener ID del alojamiento
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -13,7 +9,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $sql = "SELECT a.*, p.nombre AS nombre_anfitrion FROM alquileres a 
         JOIN personas p ON a.persona_id = p.id 
         WHERE a.id = $id";
-$resultado = $conexion->query($sql);
+$resultado = $conn->query($sql);
 
 // Validar existencia
 if ($resultado->num_rows === 0) {
@@ -61,10 +57,9 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
   <main class="property-detail">
     <h1><?= htmlspecialchars($alojamiento['titulo']) ?></h1>
     <div class="property-actions">
-      <span><i class="fas fa-star"></i> 4.95 · <a href="#">210 evaluaciones</a> · <?= htmlspecialchars($alojamiento['direccion']) ?></span>
+      <span><?= htmlspecialchars($alojamiento['direccion']) ?></span>
       <div class="buttons">
         <a href="#"><i class="fas fa-share-alt"></i> Compartir</a>
-        <a href="#"><i class="far fa-heart"></i> Guardar</a>
       </div>
     </div>
 
@@ -142,7 +137,6 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
         <div class="booking-box">
           <div class="price">
             <p><strong>$<?= $precio ?></strong> / noche</p>
-            <span class="rating"><i class="fas fa-star"></i> 4.95 · <a href="#">210 evaluaciones</a></span>
           </div>
           <div class="booking-inputs">
             <div class="dates">

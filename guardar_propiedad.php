@@ -1,14 +1,5 @@
 <?php
-$host = "localhost";
-$db = "airbnb";
-$user = "root";
-$pass = "1234";
-
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-  die("Error de conexión: " . $conn->connect_error);
-}
+include 'db.php';
 
 $titulo = $_POST['title'];
 $descripcion = $_POST['description'];
@@ -74,7 +65,9 @@ $stmt->bind_param(
 );
 
 if ($stmt->execute()) {
-  echo "Propiedad publicada exitosamente.";
+  // Redirigir a la página de confirmación
+  header("Location: publicado.php");
+  exit;
 } else {
   echo "Error al guardar la propiedad: " . $stmt->error;
 }
