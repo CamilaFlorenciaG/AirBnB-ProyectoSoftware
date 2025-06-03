@@ -32,9 +32,9 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
 </head>
 <body>
 <header>
-    <div class="logo">airbnb</div>
+    <div class="logo"><a href="index.php" style="text-decoration: none; color: inherit;">airbnb</a></div>
     <div class="search-bar">
-      <form method="GET" action="">
+      <form method="GET" action="index.php">
         <input type="text" name="busqueda" placeholder="¿A dónde vas?" value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>" />
           <button type="submit">Buscar</button>
       </form>
@@ -43,12 +43,17 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
       <?php if (isset($_SESSION['persona_id'])): ?>
         <span>Hola, <?php echo htmlspecialchars($_SESSION['persona_nombre']); ?></span>
         <a href="logout.php">Cerrar sesión</a>
-        <a href="publicar.php">Publicar alojamiento</a>
-        <a href="#">Ayuda</a>
+
+        <?php if ($_SESSION['es_anfitrion']): ?>
+          <a href="publicar.php">Publicar alojamiento</a>
+        <?php else: ?>
+          <form method="POST" action="hazte_anfitrion.php" style="display:inline;">
+            <button type="submit">Hazte anfitrión</button>
+          </form>
+        <?php endif; ?>
       <?php else: ?>
         <a href="#">Hazte anfitrión</a>
         <a href="publicar.php">Publicar alojamiento</a>
-        <a href="#">Ayuda</a>
         <button id="abrirModal" class="login-button">Iniciar sesión</button>
       <?php endif; ?>
     </nav>
@@ -135,49 +140,54 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
 
       <div class="overview-right">
         <div class="booking-box">
-          <div class="price">
-            <p><strong>$<?= $precio ?></strong> / noche</p>
+  <div class="price">
+    <p><strong>$<?= $precio ?></strong> / noche</p>
+  </div>
+
+  <form id="form-reserva" method="POST" action="Reservado.php">
+    <input type="hidden" name="alojamiento_id" value="<?= $id ?>">
+
+      <div class="booking-inputs">
+        <div class="dates">
+          <div class="date-input-group">
+            <label for="check-in">Llegada</label>
+            <input type="date" id="check-in" name="check_in">
           </div>
-          <div class="booking-inputs">
-            <div class="dates">
-              <div class="date-input-group">
-                <label for="check-in">Llegada</label>
-                <input type="date" id="check-in">
-              </div>
-              <div class="date-input-group">
-                <label for="check-out">Salida</label>
-                <input type="date" id="check-out">
-              </div>
-            </div>
-            <div class="guests">
-              <label for="adultos">Adultos</label>
-              <select id="adultos">
-                <?php for ($i = 1; $i <= 4; $i++): ?>
-                  <option value="<?= $i ?>" <?= $i == 2 ? 'selected' : '' ?>><?= $i ?></option>
-                <?php endfor; ?>
-              </select>
-            </div>
-            <div class="guests">
-              <label for="menores">Menores</label>
-              <select id="menores">
-                <?php for ($i = 0; $i <= 4; $i++): ?>
-                  <option value="<?= $i ?>"><?= $i ?></option>
-                <?php endfor; ?>
-              </select>
-            </div>
-          </div>
-
-          <button class="reserve-button">Reservar</button>
-          <p class="small-text">No se te cobrará nada aún</p>
-
-          <span id="precio-noche" style="display: none;"><?= intval($alojamiento['precio_por_noche']) ?></span>
-
-          <div class="price-breakdown">
-            <p><span>Tarifa de limpieza</span> <span>$2.000</span></p>
-            <p><span>Tarifa de servicio Airbnb</span> <span>$6.000</span></p>
-            <p><strong>Total hospedaje: <span id="total-hospedaje">$0</span></strong></p>
+          <div class="date-input-group">
+            <label for="check-out">Salida</label>
+            <input type="date" id="check-out" name="check_out">
           </div>
         </div>
+        <div class="guests">
+          <label for="adultos">Adultos</label>
+          <select id="adultos" name="adultos">
+            <?php for ($i = 1; $i <= 4; $i++): ?>
+              <option value="<?= $i ?>" <?= $i == 2 ? 'selected' : '' ?>><?= $i ?></option>
+            <?php endfor; ?>
+          </select>
+        </div>
+        <div class="guests">
+          <label for="menores">Menores</label>
+          <select id="menores" name="menores">
+            <?php for ($i = 0; $i <= 4; $i++): ?>
+              <option value="<?= $i ?>"><?= $i ?></option>
+            <?php endfor; ?>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="reserve-button">Reservar</button>
+      <p class="small-text">No se te cobrará nada aún</p>
+
+      <span id="precio-noche" style="display: none;"><?= intval($alojamiento['precio_por_noche']) ?></span>
+
+      <div class="price-breakdown">
+        <p><span>Tarifa de limpieza</span> <span>$2.000</span></p>
+        <p><span>Tarifa de servicio Airbnb</span> <span>$6.000</span></p>
+        <p><strong>Total hospedaje: <span id="total-hospedaje">$0</span></strong></p>
+      </div>
+    </form>
+  </div>
       </div>
     </div>
   </main>
@@ -235,6 +245,28 @@ $precio = number_format($alojamiento['precio_por_noche'], 0, ',', '.');
       checkIn.addEventListener("change", calcularTotal);
       checkOut.addEventListener("change", calcularTotal);
     });
+    const formReserva = document.getElementById("form-reserva");
+
+    formReserva.addEventListener("submit", function (e) {
+      const fechaIn = new Date(checkIn.value);
+      const fechaOut = new Date(checkOut.value);
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0); // Para comparar solo fechas
+
+      if (!checkIn.value || !checkOut.value || fechaOut <= fechaIn || fechaIn < hoy) {
+        alert("Por favor selecciona fechas válidas.");
+        e.preventDefault();
+        return;
+      }
+
+      const totalHuespedes = parseInt(adultos.value) + parseInt(menores.value);
+      if (totalHuespedes < 1 || totalHuespedes > 4) {
+        alert("La cantidad total de huéspedes debe estar entre 1 y 4.");
+        e.preventDefault();
+        return;
+      }
+    });
+
   </script>
   <style>
   .galeria-imagenes {

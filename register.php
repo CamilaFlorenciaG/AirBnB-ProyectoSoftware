@@ -24,14 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar el nuevo usuario
-    $stmt = $conn->prepare("INSERT INTO personas (nombre, apellido, email, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nombre, $apellido, $email, $passwordHashed);
+    $esAnfitrion = 0;
+    $stmt = $conn->prepare("INSERT INTO personas (nombre, apellido, email, password, esAnfitrion) VALUES (?, ?, ?, ?, ?)");
+    if (!$stmt) {
+        die("Error en prepare: " . $conn->error);
+    }
+    $stmt->bind_param("ssssi", $nombre, $apellido, $email, $passwordHashed, $esAnfitrion);
+
 
     if ($stmt->execute()) {
         // Guardar sesión e ir al inicio
         $_SESSION['usuario_id'] = $stmt->insert_id;
         $_SESSION['usuario_nombre'] = $nombre;
         $_SESSION['usuario_apellido'] = $apellido;
+        $_SESSION['es_anfitrion'] = $esAnfitrion;
 
         header("Location: index.php");
         exit();

@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['persona_id'] = $persona['id'];
             $_SESSION['persona_nombre'] = $persona['nombre'];
             $_SESSION['persona_apellido'] = $persona['apellido'];
+            $_SESSION['es_anfitrion'] = $row['esAnfitrion'];
 
             // Redireccionar a la página principal
             header("Location: index.php");

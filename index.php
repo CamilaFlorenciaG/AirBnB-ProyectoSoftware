@@ -13,9 +13,9 @@ session_start();
 </head>
 <body>
   <header>
-    <div class="logo">airbnb</div>
+    <div class="logo"><a href="index.php" style="text-decoration: none; color: inherit;">airbnb</a></div>
     <div class="search-bar">
-      <form method="GET" action="">
+      <form method="GET" action="index.php">
         <input type="text" name="busqueda" placeholder="¿A dónde vas?" value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>" />
           <button type="submit">Buscar</button>
       </form>
@@ -24,12 +24,17 @@ session_start();
       <?php if (isset($_SESSION['persona_id'])): ?>
         <span>Hola, <?php echo htmlspecialchars($_SESSION['persona_nombre']); ?></span>
         <a href="logout.php">Cerrar sesión</a>
-        <a href="publicar.php">Publicar alojamiento</a>
-        <a href="#">Ayuda</a>
+
+        <?php if ($_SESSION['es_anfitrion']): ?>
+          <a href="publicar.php">Publicar alojamiento</a>
+        <?php else: ?>
+          <form method="POST" action="hazte_anfitrion.php" style="display:inline;">
+            <button type="submit">Hazte anfitrión</button>
+          </form>
+        <?php endif; ?>
       <?php else: ?>
         <a href="#">Hazte anfitrión</a>
         <a href="publicar.php">Publicar alojamiento</a>
-        <a href="#">Ayuda</a>
         <button id="abrirModal" class="login-button">Iniciar sesión</button>
       <?php endif; ?>
     </nav>

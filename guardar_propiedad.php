@@ -8,7 +8,11 @@ $tipo = $_POST['type'];
 $habitaciones = $_POST['rooms'];
 $banos = $_POST['bathrooms'];
 $precio = $_POST['price'];
-$persona_id = 1;
+session_start();
+if (!isset($_SESSION['persona_id'])) {
+  die("Acceso no autorizado.");
+}
+$persona_id = $_SESSION['persona_id'];
 $disponible = 1;
 
 // Servicios (checkbox: si no están marcados, no llegan)

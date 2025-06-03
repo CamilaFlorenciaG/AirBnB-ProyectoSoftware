@@ -473,7 +473,13 @@ hr {
 
 .booking-inputs .dates {
   display: flex;
-  border-bottom: 1px solid #ccc;
+  gap: 10px;
+  flex-wrap: wrap; /* Esto permite que se apilen si no hay espacio */
+}
+
+.date-input-group {
+  flex: 1; /* Distribuye el espacio uniformemente */
+  min-width: 130px; /* Asegura que no se achiquen demasiado */
 }
 
 .booking-inputs .dates > div {

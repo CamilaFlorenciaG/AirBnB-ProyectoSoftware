@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['persona_id']) || !$_SESSION['es_anfitrion']) {
+    header('Location: index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -95,8 +95,6 @@ main h2 {
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-width: 300px;
-  /* ❌ eliminar esto: margin: 0 auto; */
 }
 
 .card:hover {
@@ -124,9 +122,4 @@ footer {
   background-color: #fff;
   border-top: 1px solid #eee;
   margin-top: auto; /* 👈 Este es el truco para empujarlo al fondo */
-}
-.card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
 }
