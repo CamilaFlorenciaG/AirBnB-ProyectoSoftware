@@ -1,0 +1,53 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.thankyou-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.thankyou-container h2 {
+  font-size: 26px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.thankyou-container p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.illustration {
+  display: block; /* Para que el margin auto funcione y centre la imagen */
+  max-width: 80%; /* Que no se pase del ancho del contenedor */
+  width: 50%; /* Ancho fijo deseado, podés cambiarlo */
+  height: auto; /* Mantiene la proporción original */
+  margin: 20px auto 0; /* Centra horizontalmente y separa arriba */
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #ff5a5f; /* mismo color que publicar */
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #e0484c; /* mismo hover que publicar */
+}

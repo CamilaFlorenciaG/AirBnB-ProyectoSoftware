@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,18 +13,30 @@
 </head>
 <body>
   <header>
-    <div class="logo">airbnb</div>
+    <div class="logo"><a href="index.php" style="text-decoration: none; color: inherit;">airbnb</a></div>
     <div class="search-bar">
-      <form method="GET" action="">
+      <form method="GET" action="index.php">
         <input type="text" name="busqueda" placeholder="¿A dónde vas?" value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>" />
           <button type="submit">Buscar</button>
       </form>
     </div>
     <nav class="menu">
-      <a href="#">Hazte anfitrión</a>
-      <a href="publicar.php">Publicar alojamiento</a>
-      <a href="#">Ayuda</a>
-      <button id="abrirModal" class="login-button">Iniciar sesión</button>
+      <?php if (isset($_SESSION['persona_id'])): ?>
+        <span>Hola, <?php echo htmlspecialchars($_SESSION['persona_nombre']); ?></span>
+        <a href="logout.php">Cerrar sesión</a>
+
+        <?php if ($_SESSION['es_anfitrion']): ?>
+          <a href="publicar.php">Publicar alojamiento</a>
+        <?php else: ?>
+          <form method="POST" action="hazte_anfitrion.php" style="display:inline;">
+            <button type="submit">Hazte anfitrión</button>
+          </form>
+        <?php endif; ?>
+      <?php else: ?>
+        <a href="#">Hazte anfitrión</a>
+        <a href="publicar.php">Publicar alojamiento</a>
+        <button id="abrirModal" class="login-button">Iniciar sesión</button>
+      <?php endif; ?>
     </nav>
   </header>
 
@@ -44,16 +59,18 @@
       if ($resultado->num_rows > 0) {
         while ($row = $resultado->fetch_assoc()) {
           echo '
-            <div class="card">
-              <img src="' . htmlspecialchars($row["urlimg"]) . '" alt="' . htmlspecialchars($row["titulo"]) . '" />
-              <div class="info">
-                <h3>' . htmlspecialchars($row["titulo"]) . '</h3>
-                <p>' . htmlspecialchars($row["descripcion"]) . '</p>
-                <p>' . ($row["disponible"]
-                          ? "$" . number_format($row["precio_por_noche"], 2) . " / noche"
-                          : "No disponible") . '</p>
+            <a href="detalle.php?id=' . $row["id"] . '" class="card-link">
+              <div class="card">
+                <img src="' . htmlspecialchars($row["urlimg"]) . '" alt="' . htmlspecialchars($row["titulo"]) . '" />
+                <div class="info">
+                  <h3>' . htmlspecialchars($row["titulo"]) . '</h3>
+                  <p>' . htmlspecialchars(mb_substr($row["descripcion"], 0, 120)) . (mb_strlen($row["descripcion"]) > 120 ? '...' : '') . '</p>
+                  <p>' . ($row["disponible"]
+                            ? "$" . number_format($row["precio_por_noche"], 2) . " / noche"
+                            : "No disponible") . '</p>
+                </div>
               </div>
-            </div>';
+            </a>';
         }
       } else {
         echo "<p>No se encontraron alojamientos.</p>";
@@ -85,18 +102,8 @@
 
         <button type="submit" class="continue-button">Iniciar sesión</button>
       </form>
+      <a href="registro.php" class="social-button email">Registrate con un correo electrónico</a>
 
-      <div class="divider"><span>o</span></div>
-
-      <button class="social-button google">
-        <img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Registrate con Google
-      </button>
-      <button class="social-button apple">
-        <img src="https://img.icons8.com/ios-filled/16/000000/mac-os.png" /> Continuar con Apple
-      </button>
-      <button class="social-button email">
-        Registrate con un correo electrónico
-      </button>
     </div>
   </div>
 
